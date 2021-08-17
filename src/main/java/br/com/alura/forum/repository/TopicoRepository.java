@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface TopicoRepository extends JpaRepository<Topico, Long> {
 
-    List<Topico> findByTitulo(String nomeCurso);
+    List<Topico> findByCursoNome(String nomeCurso);
 }
