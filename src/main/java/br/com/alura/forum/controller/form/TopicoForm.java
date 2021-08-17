@@ -1,5 +1,9 @@
 package br.com.alura.forum.controller.form;
 
+import br.com.alura.forum.modelo.Curso;
+import br.com.alura.forum.modelo.Topico;
+import br.com.alura.forum.repository.CursoRepository;
+
 public class TopicoForm {
 
     private String titulo;
@@ -28,5 +32,10 @@ public class TopicoForm {
 
     public void setNomeCurso(String nomeCurso) {
         this.nomeCurso = nomeCurso;
+    }
+
+    public Topico converter(CursoRepository cursoRepository) {
+        Curso curso = cursoRepository.findByNome(nomeCurso);
+        return new Topico(titulo, mensagem, curso);
     }
 }
