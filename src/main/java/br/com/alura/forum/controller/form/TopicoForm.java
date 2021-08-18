@@ -9,16 +9,13 @@ import javax.validation.constraints.NotEmpty;
 
 public class TopicoForm {
 
-    @NotNull
-    @NotEmpty
+    @NotNull @NotEmpty
     private String titulo;
 
-    @NotNull
-    @NotEmpty
+    @NotNull @NotEmpty
     private String mensagem;
 
-    @NotNull
-    @NotEmpty
+    @NotNull @NotEmpty
     private String nomeCurso;
 
     public String getTitulo() {
