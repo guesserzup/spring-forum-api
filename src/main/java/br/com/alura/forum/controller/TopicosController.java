@@ -8,7 +8,6 @@ import br.com.alura.forum.modelo.Topico;
 import br.com.alura.forum.repository.CursoRepository;
 import br.com.alura.forum.repository.TopicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -16,8 +15,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/topicos")
@@ -53,10 +52,10 @@ public class TopicosController {
     }
 
     @GetMapping("/{id}")
-    public DetalhesTopicoDto detalhar(@PathVariable Long id) {
-        Topico topico = topicoRepository.getById(id);
+    public ResponseEntity<DetalhesTopicoDto> detalhar(@PathVariable Long id) {
+        Optional<Topico> topico = topicoRepository.findById(id);
 
-        return new DetalhesTopicoDto(topico);
+        return topico.map(value -> ResponseEntity.ok(new DetalhesTopicoDto(value))).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
     @PutMapping("/{id}")
