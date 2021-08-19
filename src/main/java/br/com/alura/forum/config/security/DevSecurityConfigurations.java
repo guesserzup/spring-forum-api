@@ -1,5 +1,6 @@
 package br.com.alura.forum.config.security;
 
+import br.com.alura.forum.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,12 +16,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import br.com.alura.forum.repository.UsuarioRepository;
-
 @EnableWebSecurity
 @Configuration
-@Profile("prod")
-public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
+@Profile("dev")
+public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
 
 	@Autowired
 	private AutenticacaoService autenticacaoService;
